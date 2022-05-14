@@ -3,9 +3,14 @@
 
 int main(void)
 {
-	bodytile gameboard[100][100];
-	init_board(gameboard);
-	put_new_shell(gameboard);
-	printf("%c",gameboard[25][25].dir);
+	bodytile gameboard[10][10];
+	end first;
+	end tail;
+	
+	
+	init_board(gameboard,&first,&tail);
+
+	print_board(gameboard);
+
 	return 0;
 }

@@ -3,10 +3,15 @@ struct bodytile {
 	int y;
 	char dir;
 };
-
 typedef struct bodytile bodytile;
+struct end {
+	int x;
+	int y;
+};
+typedef struct end end;
 
-bodytile gameboard[100][100];
-void init_board(bodytile b[100][100]);
-void put_new_shell(bodytile b[100][100]);
+bodytile gameboard[10][10];
+void init_board(bodytile b[10][10],end *, end *);
+
+void print_board(bodytile gameboard[10][10]);
 
