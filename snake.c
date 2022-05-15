@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "snake.h"
 
-void init_board(bodytile b[10][10],end *first, end *tail)
+void init_board(bodytile b[10][10],end *head, end *tail)
 {
 	int y, x;
 	bodytile n;
@@ -16,22 +16,23 @@ void init_board(bodytile b[10][10],end *first, end *tail)
 	}
 	n.x = 5;
 	n.y = 5;
-	n.dir = 'r';
+	n.dir = 'l';
 	b[5][5] = n;
-	first->x = 5;
-	first->y = 5; 
+	head->x = 5;
+	head->y = 5; 
 
 
 
 	n.x = 6;
 	n.y = 5;
-	n.dir = 'u';
+	n.dir = 'l';
 	b[5][6] = n;
 
 	n.x = 6;
 	n.y = 6;
 	n.dir = 'u';
 	b[6][6] = n;
+
 
 	n.x = 6;
 	n.y = 7;
@@ -42,17 +43,21 @@ void init_board(bodytile b[10][10],end *first, end *tail)
 }
 
 
-void print_board(bodytile gameboard[10][10])
+void print_board(bodytile gameboard[10][10],end *head,end *tail)
 {
 	int i, j; 
 	for (i = 0; i < 10; i++){
 		for (j = 0; j < 10; j++){
-			if (gameboard[i][j].dir != 'n')
-				printf(" S");
-			else
+			if (gameboard[i][j].dir != 'n'){
+				if (gameboard[i][j].x == tail->x && gameboard[i][j].y == tail->y)
+					printf(" T");
+				else if (gameboard[i][j].x == head->x && gameboard[i][j].y == head->y)
+					printf(" H");
+				else
+					printf(" S");
+			}
+			else 
 				printf(" *");
-
-			
 		}
 		printf("\n");
 	}
