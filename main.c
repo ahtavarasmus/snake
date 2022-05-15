@@ -15,13 +15,51 @@ int main(void)
 	init_board(gameboard,&head,&tail);
 
 	print_board(gameboard,&head,&tail);
-	printf("\nhead(x,y)=(%d,%d)\n",head.x,head.y);
-	printf("\ntail(x,y)=(%d,%d)\n",tail.x,tail.y);
 
-	move_snake(gameboard,&head,&tail);
+
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
 	print_board(gameboard,&head,&tail);
-	printf("\nhead(x,y)=(%d,%d)\n",head.x,head.y);
-	printf("\ntail(x,y)=(%d,%d)\n",tail.x,tail.y);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+
+	change_dir('u',gameboard,&head);
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+
+	change_dir('l',gameboard,&head);
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
+	print_board(gameboard,&head,&tail);
+	if (!move_snake(gameboard,&head,&tail)){
+		printf("We lost!\n");
+		return 0;
+	}
 
 	return 0;
 }

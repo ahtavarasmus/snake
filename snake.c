@@ -61,10 +61,11 @@ void print_board(bodytile gameboard[10][10],end *head,end *tail)
 		}
 		printf("\n");
 	}
+	printf("\n");
 }
 
 
-void move_snake(bodytile gameboard[10][10],end *head, end *tail)
+int move_snake(bodytile gameboard[10][10],end *head, end *tail)
 {
 	/* store the directions at the ends */
 	char head_next_dir = gameboard[head->y][head->x].dir;
@@ -73,18 +74,36 @@ void move_snake(bodytile gameboard[10][10],end *head, end *tail)
 	/* set the next head tile's head's dir be the same */
 	/* and also update the head's coords in the gameboard. */
 	if (head_next_dir == 'u'){
+		/* check if we are running into the walls */
+		if (head->y-1 < 0)
+			return 0;
+		/* check if we are running into our own body */
+		if (gameboard[head->y-1][head->x].dir != 'n')
+			return 0;
 		gameboard[head->y-1][head->x].dir = 'u';
 		head->y--;
 	}
 	if (head_next_dir == 'l'){
+		if (head->x-1 < 0)
+			return 0;
+		if (gameboard[head->y][head->x-1].dir != 'n')
+			return 0;
 		gameboard[head->y][head->x-1].dir = 'l';
 		head->x--;
 	}
 	if (head_next_dir == 'd'){
+		if (head->y+1 > 9)
+			return 0;
+		if (gameboard[head->y+1][head->x].dir != 'n')
+			return 0;
 		gameboard[head->y+1][head->x].dir = 'd';
 		head->y++;
 	}
 	if (head_next_dir == 'r'){
+		if (head->x+1 > 9)
+			return 0;
+		if (gameboard[head->y][head->x+1].dir != 'n')
+			return 0;
 		gameboard[head->y][head->x+1].dir = 'r';
 		head->x++;
 	}
@@ -101,5 +120,20 @@ void move_snake(bodytile gameboard[10][10],end *head, end *tail)
 		tail->y++;
 	if (tail_next_dir == 'r')
 		tail->x++;
+	return 1;
 	
 } 
+
+void change_dir(char dir,bodytile gameboard[10][10], end *head)
+{
+	char curr_dir = gameboard[head->y][head->x].dir;
+
+	/* first check if the direction is legal (no opposite) */
+	if ((dir == 'u' && curr_dir == 'd') || (dir == 'd' && curr_dir == 'u'))
+		return;
+	if ((dir == 'l' && curr_dir == 'r') || (dir == 'r' && curr_dir == 'l'))
+		return;
+
+	/* finally change it */
+	gameboard[head->y][head->x].dir = dir != curr_dir ? dir : curr_dir;
+}
