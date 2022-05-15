@@ -16,7 +16,12 @@ int main(void)
 
 	print_board(gameboard,&head,&tail);
 	printf("\nhead(x,y)=(%d,%d)\n",head.x,head.y);
-	printf("\ntail(x,y)=(%d,%d)",tail.x,tail.y);
+	printf("\ntail(x,y)=(%d,%d)\n",tail.x,tail.y);
+
+	move_snake(gameboard,&head,&tail);
+	print_board(gameboard,&head,&tail);
+	printf("\nhead(x,y)=(%d,%d)\n",head.x,head.y);
+	printf("\ntail(x,y)=(%d,%d)\n",tail.x,tail.y);
 
 	return 0;
 }

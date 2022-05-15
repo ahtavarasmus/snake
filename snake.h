@@ -15,3 +15,4 @@ void init_board(bodytile b[10][10],end *, end *);
 
 void print_board(bodytile gameboard[10][10],end *,end *);
 
+void move_snake(bodytile gameboard[10][10],end *, end *);

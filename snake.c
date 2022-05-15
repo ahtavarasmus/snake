@@ -62,3 +62,44 @@ void print_board(bodytile gameboard[10][10],end *head,end *tail)
 		printf("\n");
 	}
 }
+
+
+void move_snake(bodytile gameboard[10][10],end *head, end *tail)
+{
+	/* store the directions at the ends */
+	char head_next_dir = gameboard[head->y][head->x].dir;
+	char tail_next_dir = gameboard[tail->y][tail->x].dir;
+
+	/* set the next head tile's head's dir be the same */
+	/* and also update the head's coords in the gameboard. */
+	if (head_next_dir == 'u'){
+		gameboard[head->y-1][head->x].dir = 'u';
+		head->y--;
+	}
+	if (head_next_dir == 'l'){
+		gameboard[head->y][head->x-1].dir = 'l';
+		head->x--;
+	}
+	if (head_next_dir == 'd'){
+		gameboard[head->y+1][head->x].dir = 'd';
+		head->y++;
+	}
+	if (head_next_dir == 'r'){
+		gameboard[head->y][head->x+1].dir = 'r';
+		head->x++;
+	}
+
+	/* make the current tail's direction to nothing */
+	gameboard[tail->y][tail->x].dir = 'n';
+
+	/* update the tail's coords in the gameboard */
+	if (tail_next_dir == 'u')
+		tail->y--;
+	if (tail_next_dir == 'l')
+		tail->x--;
+	if (tail_next_dir == 'd')
+		tail->y++;
+	if (tail_next_dir == 'r')
+		tail->x++;
+	
+} 
