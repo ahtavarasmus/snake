@@ -17,11 +17,13 @@ int main(void)
 	print_board(gameboard,&head,&tail);
 
 
+	change_dir('d',gameboard,&head);
 	if (!move_snake(gameboard,&head,&tail)){
 		printf("We lost!\n");
 		return 0;
 	}
 	print_board(gameboard,&head,&tail);
+	change_dir('r',gameboard,&head);
 	if (!move_snake(gameboard,&head,&tail)){
 		printf("We lost!\n");
 		return 0;
